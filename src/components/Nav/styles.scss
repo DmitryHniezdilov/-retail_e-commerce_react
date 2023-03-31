@@ -1,0 +1,17 @@
+@import "../../assets/styles/mixins/media";
+
+.nav {
+  &__button-mob {
+    width: 24px;
+    height: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  @include media-xl {
+    &__button-mob {
+      display: none;
+    }
+  }
+}

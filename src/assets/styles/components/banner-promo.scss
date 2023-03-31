@@ -1,0 +1,113 @@
+.banner-promo {
+    position: relative;
+    z-index: 2;
+
+    &__img-box {
+        height: 232px;
+        margin-right: -$width-gap-gorizontal;
+        margin-left: -$width-gap-gorizontal;
+        position: relative;
+        z-index: -1;
+        background-color: transparent;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 100% 0%;
+        clip-path: polygon(0 35px, 100% 0, 100% 100%, 0 100%);
+    }
+
+    &__paper {
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.13));
+    }
+
+    &__paper-inner {
+        margin-top: -30px;
+        margin-bottom: -24px;
+        padding: 27px 20px 20px;
+        background-color: $color-bg;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), 0 100%);
+    }
+
+    &__title {
+        margin-bottom: 10px;
+        font-family: $font-title;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    &__text {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        color: $color-text-secondary;
+    }
+
+    @include media-sm {
+        &__title {
+            font-size: 30px;
+        }
+    }
+
+    @include media-lg {
+        position: relative;
+
+        &__center {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: stretch;
+            height: 232px;
+        }
+
+        &__paper {
+            flex: 0 0 50%;
+            max-width: 572px;
+        }
+
+        &__paper-inner {
+            margin: 0;
+            height: 100%;
+            padding: 20px 70px 20px 20px;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 90px) 100%, 0 100%);
+        }
+
+        &__img-box {
+            flex: 1;
+            margin: 0 0 0 -80px;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        }
+
+        &__img {
+            clip-path: polygon(90px 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        &__title {
+            font-size: 34px;
+        }
+
+        &__text {
+            display: -webkit-box;
+            line-clamp: 3;
+            -webkit-line-clamp: 3;
+            box-orient: vertical;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    @include media-xl {
+        &__title {
+            font-size: 40px;
+            line-height: 60px;
+        }
+
+        &__text {
+            font-size: 20px;
+        }
+    }
+}

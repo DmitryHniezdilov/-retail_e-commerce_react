@@ -1,0 +1,26 @@
+.header-icons {
+    font-size: 0;
+
+    &__btn {
+        width: 22px;
+        height: 20px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:not(:first-child) {
+            margin-left: 20px;
+        }
+
+        @include media-to-md {
+            &:not(:first-child) {
+                display: none;
+            }
+        }
+
+        @include media-md {
+            width: 20px;
+            height: 18px;
+        }
+    }
+}

@@ -1,0 +1,101 @@
+@import "../../assets/styles/mixins/media";
+
+.header {
+  &__inner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    min-height: 70px;
+    align-items: center;
+    line-height: 1;
+  }
+
+  &__search-wrap {
+    display: none;
+  }
+
+  &__logo-wrap {
+    font-size: 0;
+  }
+
+  &__icons-wrap {
+    min-width: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__button-mob {
+    width: 24px;
+    height: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__logo {
+    width: 101px;
+    max-width: 101px;
+
+    &.skeleton {
+      height: 36px;
+    }
+  }
+
+  &__logo-img {
+    width: inherit;
+  }
+
+  @include media-md {
+    &__drop-wrap {
+      min-width: 100px;
+    }
+
+    &__logo {
+      width: 125px;
+      max-width: 125px;
+
+      &.skeleton {
+        height: 45px;
+      }
+    }
+
+    &__inner {
+      min-height: 80px;
+    }
+  }
+
+  @include media-xl {
+    &__inner {
+      flex-flow: row wrap;
+      min-height: auto;
+      padding: 44px 0 33px;
+      justify-content: space-between;
+    }
+
+    &__logo-wrap {
+      order: -1;
+      width: 100%;
+      padding-bottom: 37px;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__search-wrap {
+      display: block;
+      min-width: 200px;
+    }
+
+    &__icons-wrap {
+      min-width: 200px;
+    }
+
+    &__logo {
+      width: 162px;
+      max-width: 162px;
+
+      &.skeleton {
+        height: 58px;
+      }
+    }
+  }
+}

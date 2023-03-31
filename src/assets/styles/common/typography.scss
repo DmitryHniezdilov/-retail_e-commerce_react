@@ -1,0 +1,71 @@
+h1 {
+    margin: 0 0 10px;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 17px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 38px;
+    text-transform: none;
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 125px;
+        height: 3px;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $color-decor;
+    }
+
+    @include media-xl {
+        font-size: 48px;
+        line-height: 48px;
+        margin-bottom: 55px;
+
+        &::after {
+            width: 150px;
+            bottom: -23px;
+        }
+    }
+}
+
+h3 {
+    margin: 0 0 22px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 30px;
+    text-transform: none;
+
+    @include media-xl {
+        font-size: 48px;
+        line-height: 58px;
+        margin-bottom: 30px;
+    }
+}
+
+h5 {
+    margin: 0 0 9px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 26px;
+    text-transform: capitalize;
+}
+
+h6 {
+    margin: 0 0 9px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    text-transform: capitalize;
+}

@@ -1,0 +1,67 @@
+.btn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    width: 180px;
+    height: 45px;
+    padding: 15px 15px 13px;
+    font-size: 16px;
+    font-weight: 700;
+    color: $color-btn-text;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    transition: all .3s ease;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+    line-height: 1;
+    background: $color-btn-fill;
+    border: 1px solid transparent;
+    overflow: hidden;
+    border: none;
+    z-index: 1;
+
+    &--sm {
+        width: 153px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: $color-btn-fill-hov;
+        color: $color-btn-text-hov;
+        border: 1px solid $color-btn-fill;
+        transition: all .3s ease;
+    }
+
+    &--light {
+        color: #040404;
+        background: #fff;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: #fff;
+            border: 1px solid #fff;
+            transition: all .3s ease;
+        }
+    }
+
+    @include media-xl {
+        height: 52px;
+        font-size: 16px;
+        line-height: 16px;
+
+        &--sm {
+            width: 180px;
+            height: 52px;
+        }
+
+        &--md {
+            width: 210px;
+            height: 52px;
+        }
+    }
+}

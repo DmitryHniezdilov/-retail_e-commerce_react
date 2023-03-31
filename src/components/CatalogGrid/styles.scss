@@ -1,0 +1,40 @@
+@import "../../assets/styles/mixins/media";
+
+.catalog-grid {
+  margin-top: 28px;
+
+  &__list {
+    margin: -15px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  &__btn-wrap {
+    margin-top: 40px;
+
+    &--top-enlg {
+      margin-top: 60px;
+    }
+  }
+
+  @include media-lg {
+    &__btn-wrap {
+      &--top-enlg {
+        margin-top: 80px;
+      }
+    }
+  }
+
+  @include media-xl {
+    margin-top: 40px;
+
+    &__btn-wrap {
+      margin-top: 50px;
+
+      &--top-enlg {
+        margin-top: 100px;
+      }
+    }
+  }
+}

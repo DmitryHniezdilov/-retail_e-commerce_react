@@ -1,58 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect, useCallback } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setInnerWidth } from "./store/reducers/innerWidthSlice";
+import PageLayout from "./components/PageLayout";
+// import Main from "./pages/Main/";
+import NotFound from "./pages/NotFound";
+import Catalog from "./pages/Catalog";
+import Product from "./pages/Product";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  const handleWindowResize = () => {
+    dispatch(setInnerWidth(window.innerWidth));
+  };
+
+  handleWindowResize();
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route index element={<Catalog />} />
+          <Route path="catalog" element={<Catalog />} />
+          <Route path="/:id?" element={<Catalog />} />
+          <Route path="catalogs/:id?" element={<Product />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
