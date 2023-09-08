@@ -34,13 +34,13 @@ const BannerSecondary = ({ isLoading }) => {
 
   return (
     <div className="banner-secondary decor-bcg decor-bcg--top">
-      <div className="banner-secondary__img-box">
+      <figure className="banner-secondary__img-box">
         <img
           className="banner-secondary__img"
           src={bcg}
           alt="secondary banner background"
         />
-      </div>
+      </figure>
       <div className="banner-secondary__inner center">
         <div className="banner-secondary__text-wrap">
           <h1 className="banner-secondary__title">{title}</h1>

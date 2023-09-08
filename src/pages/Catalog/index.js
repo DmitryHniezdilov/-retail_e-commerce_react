@@ -5,15 +5,14 @@ import { useGetCatalogQuery } from "../../api";
 import CatalogSettings from "../../components/CatalogSettings";
 import CatalogGrid from "../../components/CatalogGrid";
 import BannerSecondary from "../../elements/BannerSecondary";
+import BannerPromo from "../../elements/BannerPromo";
 import { INITIAL_RANGE_VALUE, DESKTOP_WIDTH_LG } from "../../utils/constants";
 
 const Catalog = () => {
   const { id } = useParams();
   const searchValue = useSelector((state) => state.search);
-  // const innerWidth = useSelector((state) => state.innerWidth);
 
   const [paginationStep, setPaginationStep] = useState(
-    // innerWidth > DESKTOP_WIDTH_LG ? 8 : 6
     window.innerWidth > DESKTOP_WIDTH_LG ? 8 : 6
   );
   const [rangeValue, setRangeValue] = useState(INITIAL_RANGE_VALUE);
@@ -83,7 +82,7 @@ const Catalog = () => {
   }, [isShowPriceRange, handleClosePriceRange]);
 
   return (
-    <>
+    <main>
       <BannerSecondary isLoading={isLoading || isFetching} />
       <section className="content-center center gap-sm gap-btm-md">
         <CatalogSettings
@@ -102,7 +101,8 @@ const Catalog = () => {
           isLoading={isLoading || isFetching}
         />
       </section>
-    </>
+      <BannerPromo isLoading={isLoading || isFetching} />
+    </main>
   );
 };
 

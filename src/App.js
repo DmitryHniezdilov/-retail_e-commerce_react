@@ -1,43 +1,49 @@
-import React, { useEffect, useCallback } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setInnerWidth } from "./store/reducers/innerWidthSlice";
+import React from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
 import PageLayout from "./components/PageLayout";
 // import Main from "./pages/Main/";
 import NotFound from "./pages/NotFound";
 import Catalog from "./pages/Catalog";
 import Product from "./pages/Product";
 
-const App = () => {
-  const dispatch = useDispatch();
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      element={<PageLayout />}
+      handle={{
+        crumb: "Home",
+        path: "/",
+      }}
+    >
+      <Route index element={<Catalog />} />
+      <Route
+        path="catalogs"
+        element={<Catalog />}
+        handle={{
+          crumb: "Catalog",
+          path: "catalogs",
+        }}
+      />
+      <Route path="/:id?" element={<Catalog />} />
+      <Route
+        path="catalogs/:id?"
+        element={<Product />}
+        handle={{
+          crumb: "Catalog",
+          path: "/catalogs",
+        }}
+      />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  )
+);
 
-  const handleWindowResize = () => {
-    dispatch(setInnerWidth(window.innerWidth));
-  };
-
-  handleWindowResize();
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<PageLayout />}>
-          <Route index element={<Catalog />} />
-          <Route path="catalog" element={<Catalog />} />
-          <Route path="/:id?" element={<Catalog />} />
-          <Route path="catalogs/:id?" element={<Product />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
-};
-
-export default App;
+export default function App() {
+  return <RouterProvider router={router} />;
+}

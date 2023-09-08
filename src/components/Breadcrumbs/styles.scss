@@ -1,0 +1,107 @@
+@import "../../assets/styles/mixins/media";
+
+.breadcrumbs {
+  width: 100%;
+  height: 112px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: $color-breadcrumbs-bcg;
+  opacity: 0.99;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  &::before {
+    background: url("../../assets/img/decor-bcg-elem.png") center repeat;
+    background-position: 52.5% 20%;
+    background-size: 104px;
+    filter: invert(1);
+    opacity: 0.4;
+  }
+
+  &::after {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.3) 10%,
+      rgba(0, 0, 0, 0.01) 17%,
+      rgba(0, 0, 0, 0.3) 20%,
+      rgba(0, 0, 0, 0.3) 80%,
+      rgba(0, 0, 0, 0.01) 83%,
+      rgba(0, 0, 0, 0.3) 90%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+
+  &__wrap {
+    text-align: start !important;
+  }
+
+  &__list {
+    display: inline-flex;
+    margin: 0;
+    padding-left: 15px;
+    list-style: none;
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  &__link,
+  &__title {
+    padding: 0 5px;
+    margin-left: 17px;
+    font-size: 20px;
+    font-family: $font-title;
+    color: $color-breadcrumbs-text;
+    line-height: 1.2;
+    outline: none;
+  }
+
+  &__link {
+    position: relative;
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      top: 50%;
+      right: -7px;
+      width: 12px;
+      height: 18px;
+      position: relative;
+      transform: translate(0, -50%);
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='18' viewBox='0 0 12 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L10 9L1 17' stroke='white' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      right: 11px;
+      bottom: -9px;
+      left: 0;
+      height: 3px;
+      background-color: $color-breadcrumbs-text;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+  }
+}

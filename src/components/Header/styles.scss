@@ -36,6 +36,13 @@
     width: 101px;
     max-width: 101px;
 
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color-text-nav-hov;
+      text-decoration: none;
+    }
+
     &.skeleton {
       height: 36px;
     }

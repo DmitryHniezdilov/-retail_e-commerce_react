@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useGetCatalogItemQuery } from "../../api";
+import Skeleton from "react-loading-skeleton";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const Product = () => {
   const { id } = useParams();
-
-  console.log("id product", id);
 
   const { product, isLoading, isFetching, isError, refetch } =
     useGetCatalogItemQuery(
@@ -29,12 +29,20 @@ const Product = () => {
       }
     );
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
+
+  console.log("product", product);
 
   return (
     <>
+      {product || !isLoading ? (
+        <Breadcrumbs title={product?.title || ""} />
+      ) : (
+        <Skeleton height={112} />
+      )}
       {/* <BannerSecondary isLoading={isLoading || isFetching} /> */}
       <section className="content-center center gap-sm gap-btm-md">
+        {/* {`Product ID - ${id}`} */}
         {/* <CatalogSettings
           pagination={pagination}
           selectValue={selectedSort}

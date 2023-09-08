@@ -34,6 +34,7 @@
 
       &:hover,
       &:focus,
+      &:focus-visible,
       &:active {
         color: $color-text-nav-hov;
         text-decoration: none;

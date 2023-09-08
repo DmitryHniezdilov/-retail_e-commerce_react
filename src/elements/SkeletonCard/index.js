@@ -4,21 +4,21 @@ import "./styles.scss";
 
 const SkeletonCard = () => {
   return (
-    <div className="card">
-      <div className="card__link">
-        <div className="card__img-wrap">
-          <Skeleton width={170} height={170} />
+    <div className="scard">
+      <div className="scard__link">
+        <div className="scard__img-wrap">
+          <Skeleton className="scard__img" />
         </div>
-        <div className="card__desc-wrap">
-          <p className="card__title">
-            <Skeleton width={200} height={26} />
+        <div className="scard__desc-wrap">
+          <p className="scard__title">
+            <Skeleton className="scard__title" />
           </p>
-          <p className="card__price-wrap">
-            <span className="card__price-old">
-              <Skeleton width={63} height={18} />
+          <p className="scard__price-wrap">
+            <span className="scard__price-old">
+              <Skeleton className="scard__price-old" />
             </span>
-            <span className="card__price-cur">
-              <Skeleton width={98} height={18} />
+            <span className="scard__price-cur">
+              <Skeleton className="scard__price-cur" />
             </span>
           </p>
         </div>
