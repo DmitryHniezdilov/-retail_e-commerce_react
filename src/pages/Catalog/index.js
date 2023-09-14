@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useGetCatalogQuery } from "../../api";
@@ -83,7 +83,7 @@ const Catalog = () => {
 
   return (
     <main>
-      <BannerSecondary isLoading={isLoading || isFetching} />
+      {!searchValue && <BannerSecondary isLoading={isLoading || isFetching} />}
       <section className="content-center center gap-sm gap-btm-md">
         <CatalogSettings
           pagination={pagination}
@@ -93,6 +93,8 @@ const Catalog = () => {
           onShowPriceRange={onShowPriceRange}
           setRangeValue={setRangeValue}
           rangeValue={rangeValue}
+          searchValue={searchValue}
+          isLoad={isLoadGoods}
         />
         <CatalogGrid
           catalogList={catalogList}

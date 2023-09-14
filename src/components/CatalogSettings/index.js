@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { resetSearch } from "../../store/reducers/searchSlice";
 import SvgIcon from "../../elements/SvgIcon";
 import RangeSlider from "react-range-slider-input";
 import { CSSTransition } from "react-transition-group";
@@ -13,25 +15,45 @@ const CatalogSettings = ({
   onShowPriceRange,
   setRangeValue,
   rangeValue,
+  searchValue,
+  isLoad,
 }) => {
   const nodeRef = useRef(null);
-
-  console.log("CatalogSettings");
+  const dispatch = useDispatch();
 
   return (
     <div className="catalog-settings hide-to-lg">
       <div className="catalog-settings__label">
         {pagination ? (
-          <p className="catalog-settings__label-info">
-            {`Showing ${pagination?.start + 1} - ${pagination?.limit} of ${
-              pagination?.total
-            } results`}
-          </p>
+          <span className="catalog-settings__label-info">
+            {`Showing  ${
+              isLoad
+                ? `${pagination?.start + 1} - ${pagination?.limit}  of`
+                : ""
+            } ${pagination?.total} results`}
+            {/*  */}
+          </span>
         ) : (
           <Skeleton width={180} height={28} />
         )}
+        {searchValue && (
+          <span className="catalog-settings__label-info">{` for "${searchValue}"`}</span>
+        )}
       </div>
       <ul className="catalog-settings__sorting">
+        {searchValue && (
+          <li className="catalog-settings__sorting-item">
+            <button
+              className="catalog-settings__btn-search"
+              aria-hidden="true"
+              onClick={() => {
+                dispatch(resetSearch());
+              }}
+            >
+              <span>Clear search value</span>
+            </button>
+          </li>
+        )}
         <li className="catalog-settings__sorting-item catalog-settings__sorting-item--filter">
           {pagination ? (
             <>
@@ -109,65 +131,6 @@ const CatalogSettings = ({
             <Skeleton width={118} height={28} />
           )}
         </li>
-        {/* <li className="catalog-settings__sorting-item catalog-settings__sorting-item--display">
-          <ul className="catalog-settings__display-list">
-            <li className="catalog-settings__display-item">
-              <button
-                className="catalog-settings__display-btn"
-                aria-hidden="true"
-              >
-                <SvgIcon
-                  addСlass="catalog-settings__icon catalog-settings__icon--display"
-                  icon="display-1"
-                />
-              </button>
-            </li>
-            <li className="catalog-settings__display-item">
-              <button
-                className="catalog-settings__display-btn"
-                aria-hidden="true"
-              >
-                <SvgIcon
-                  addСlass="catalog-settings__icon catalog-settings__icon--display"
-                  icon="display-2"
-                />
-              </button>
-            </li>
-            <li className="catalog-settings__display-item">
-              <button
-                className="catalog-settings__display-btn"
-                aria-hidden="true"
-              >
-                <SvgIcon
-                  addСlass="catalog-settings__icon catalog-settings__icon--display"
-                  icon="display-3"
-                />
-              </button>
-            </li>
-            <li className="catalog-settings__display-item">
-              <button
-                className="catalog-settings__display-btn"
-                aria-hidden="true"
-              >
-                <SvgIcon
-                  addСlass="catalog-settings__icon catalog-settings__icon--display"
-                  icon="display-4"
-                />
-              </button>
-            </li>
-            <li className="catalog-settings__display-item">
-              <button
-                className="catalog-settings__display-btn"
-                aria-hidden="true"
-              >
-                <SvgIcon
-                  addСlass="catalog-settings__icon catalog-settings__icon--display"
-                  icon="display-5"
-                />
-              </button>
-            </li>
-          </ul>
-        </li> */}
       </ul>
     </div>
   );

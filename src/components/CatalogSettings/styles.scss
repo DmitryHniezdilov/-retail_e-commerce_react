@@ -34,11 +34,13 @@
     }
 
     &--filter {
+      margin-left: 20px;
       position: relative;
     }
   }
 
-  &__btn-filter {
+  &__btn-filter,
+  &__btn-search {
     height: 28px;
     display: flex;
     flex-flow: row nowrap;

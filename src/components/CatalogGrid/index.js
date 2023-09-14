@@ -17,8 +17,8 @@ const CatalogGrid = ({ catalogList, isLoad, onLoad }) => {
       </div>
       {isLoad && (
         <div className="catalog-grid__btn-wrap catalog-grid__btn-wrap--top-enlg">
-          <a
-            href="#"
+          <button
+            type="button"
             className="btn"
             onClick={(e) => {
               e.stopPropagation();
@@ -27,7 +27,7 @@ const CatalogGrid = ({ catalogList, isLoad, onLoad }) => {
             }}
           >
             Load More
-          </a>
+          </button>
         </div>
       )}
     </div>

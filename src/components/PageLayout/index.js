@@ -1,10 +1,7 @@
-import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import Header from "../Header";
 import Footer from "../Footer";
 import ScrollToTop from "../ScrollToTop";
-import { setInnerWidth } from "../../store/reducers/innerWidthSlice";
 import { useGetCategoriesQuery } from "../../api";
 
 const PageLayout = () => {
@@ -17,24 +14,6 @@ const PageLayout = () => {
         isError: isError,
       }),
     });
-
-  const dispatch = useDispatch();
-
-  const handleWindowResize = () => {
-    dispatch(setInnerWidth(window.innerWidth));
-  };
-
-  handleWindowResize();
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  });
-
-  console.log("PageLayout");
 
   return (
     <div className="page">

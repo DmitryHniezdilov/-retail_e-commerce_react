@@ -57,7 +57,11 @@ const NavList = ({ navList, isDesktop, onClose }) => {
         )}
       </ul>
       <div className="nav-list__search-wrap">
-        {navList ? <Search /> : <Skeleton width={18} height={18} />}
+        {navList ? (
+          <Search isDesktop={isDesktop} onClose={onClose} />
+        ) : (
+          <Skeleton width={18} height={18} />
+        )}
       </div>
     </nav>
   );

@@ -18,7 +18,7 @@ const Nav = ({ categoriesList }) => {
     innerWidth > DESKTOP_WIDTH_XL ? setIsDesktop(true) : setIsDesktop(false);
   }, [innerWidth]);
 
-  const NavComponent = ({ isDesktop }) => {
+  const NavComponent = ({ isDesktop, isShowModal }) => {
     return isDesktop ? (
       <NavList navList={categoriesList} isDesktop={isDesktop} />
     ) : (
@@ -33,7 +33,7 @@ const Nav = ({ categoriesList }) => {
   return (
     <div className="nav">
       {isDesktop ? (
-        <NavComponent isDesktop={true} />
+        <NavComponent isDesktop={true} isShowModal={isShowModal} />
       ) : categoriesList ? (
         <>
           <button
@@ -48,7 +48,7 @@ const Nav = ({ categoriesList }) => {
             isShowModal={isShowModal}
             onClose={() => setShowModal(false)}
           >
-            <NavComponent isDesktop={false} />
+            <NavComponent isDesktop={false} isShowModal={isShowModal} />
           </NavModal>
         </>
       ) : (

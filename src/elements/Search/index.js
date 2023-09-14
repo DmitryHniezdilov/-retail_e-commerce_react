@@ -1,22 +1,37 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { updateSearch } from "../../store/reducers/searchSlice";
 import SvgIcon from "../SvgIcon";
 import "./styles.scss";
 
-const Search = () => {
+const Search = ({ isDesktop, onClose }) => {
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+  const searchValue = useSelector((state) => state.search);
+  const [searchValueComponent, setSearchValueComponent] = useState("");
+
+  const actionSearch = () => {
+    dispatch(updateSearch(searchValueComponent));
+    navigate("/catalogs");
+    !isDesktop && onClose();
+  };
 
   const handleOnSearch = () => {
-    dispatch(updateSearch(searchValue));
+    actionSearch();
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      dispatch(updateSearch(searchValue));
+      actionSearch();
     }
   };
+
+  useEffect(() => {
+    if (!searchValue) {
+      setSearchValueComponent("");
+    }
+  }, [searchValue]);
 
   return (
     <div className="search">
@@ -31,8 +46,8 @@ const Search = () => {
         type="text"
         className="search__input"
         placeholder="search..."
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        value={searchValueComponent}
+        onChange={(e) => setSearchValueComponent(e.target.value)}
         onKeyDown={handleKeyDown}
       />
     </div>

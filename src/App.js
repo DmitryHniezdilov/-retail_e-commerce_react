@@ -1,4 +1,3 @@
-import React from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -6,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import PageLayout from "./components/PageLayout";
-// import Main from "./pages/Main/";
+import Main from "./pages/Main/";
 import NotFound from "./pages/NotFound";
 import Catalog from "./pages/Catalog";
 import Product from "./pages/Product";
@@ -21,7 +20,7 @@ const router = createBrowserRouter(
         path: "/",
       }}
     >
-      <Route index element={<Catalog />} />
+      <Route index element={<Main />} />
       <Route
         path="catalogs"
         element={<Catalog />}
