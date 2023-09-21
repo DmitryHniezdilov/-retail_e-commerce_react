@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import { useGetCatalogItemQuery } from "../../api";
 import Skeleton from "react-loading-skeleton";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -35,8 +34,6 @@ const Product = () => {
       }
     );
 
-  // useEffect(() => {}, []);
-
   console.log("product", product);
 
   const setCountInc = () => {
@@ -54,7 +51,6 @@ const Product = () => {
       ) : (
         <Skeleton height={112} />
       )}
-      {/* <BannerSecondary isLoading={isLoading || isFetching} /> */}
       <section className="content-center center gap-xs gap-btm-md product">
         <div className="product__info-wrap">
           <div className="product__slider">

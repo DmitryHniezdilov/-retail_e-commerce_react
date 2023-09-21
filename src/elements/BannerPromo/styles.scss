@@ -4,6 +4,23 @@
   position: relative;
   z-index: 2;
 
+  &.skeleton {
+    display: inline-block;
+    height: 505px;
+
+    @include media-sm {
+      height: 385px;
+    }
+
+    @include media-md {
+      height: 357px;
+    }
+
+    @include media-lg {
+      height: 232px;
+    }
+  }
+
   &__img-box {
     height: 232px;
     margin-right: -$width-gap-gorizontal;

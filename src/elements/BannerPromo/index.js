@@ -28,8 +28,8 @@ const BannerPromo = ({ isLoading }) => {
     currentSlug ? setTitle(getTitle()) : setTitle("Catalog");
   }, [currentSlug, categoriesList]);
 
-  if (!categoriesList) {
-    return <Skeleton classNameName="banner-promo" />;
+  if (!categoriesList || isLoading) {
+    return <Skeleton className="banner-promo skeleton" />;
   }
 
   return (

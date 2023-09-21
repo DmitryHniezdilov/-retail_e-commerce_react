@@ -6,6 +6,18 @@
   margin-left: -10px;
   font-size: 0;
 
+  &.skeleton {
+    height: 438px;
+
+    @include media-md {
+      height: 442px;
+    }
+
+    @include media-xl {
+      height: 660px;
+    }
+  }
+
   &__img-box {
     width: 100%;
     max-height: 350px;

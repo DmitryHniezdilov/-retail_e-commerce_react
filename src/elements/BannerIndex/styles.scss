@@ -1,6 +1,26 @@
 @import "../../assets/styles/mixins/media";
 
 .banner-index {
+  &.skeleton {
+    height: 795px;
+
+    @include media-sm {
+      height: 767px;
+    }
+
+    @include media-md {
+      height: 711px;
+    }
+
+    @include media-lg {
+      height: 439px;
+    }
+
+    @include media-xl {
+      height: 527px;
+    }
+  }
+
   &__center {
     position: relative;
     font-size: 0;

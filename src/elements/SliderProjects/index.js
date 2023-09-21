@@ -68,7 +68,7 @@ const SliderProjects = ({ isLoading }) => {
   ];
 
   if (isLoading) {
-    return <Skeleton className="slider-projects" />;
+    return <Skeleton className="slider-projects skeleton" />;
   }
 
   return (

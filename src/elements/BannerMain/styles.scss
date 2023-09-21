@@ -1,6 +1,25 @@
 @import "../../assets/styles/mixins/media";
 
 .banner-main {
+  &.skeleton {
+    height: 867px;
+
+    @include media-sm {
+      height: 729px;
+    }
+
+    @include media-md {
+      height: 673px;
+    }
+
+    @include media-lg {
+      height: 455px;
+    }
+
+    @include media-xl {
+      height: 526px;
+    }
+  }
   &__img-box {
     height: 455px;
     position: relative;

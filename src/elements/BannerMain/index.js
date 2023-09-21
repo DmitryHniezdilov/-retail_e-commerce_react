@@ -5,8 +5,8 @@ import bcg from "./banner-main-bcg.jpg";
 import "./styles.scss";
 
 const BannerMain = ({ isLoading, title, description, link = "/" }) => {
-  if (isLoading) {
-    return <Skeleton classNameNameName="banner-main" />;
+  if (!title || isLoading) {
+    return <Skeleton className="banner-main skeleton" />;
   }
 
   return (

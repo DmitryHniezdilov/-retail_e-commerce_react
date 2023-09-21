@@ -13,7 +13,7 @@ const BannerIndex = ({
   link = "/",
 }) => {
   if (isLoading) {
-    return <Skeleton classNameNameName="banner-index" />;
+    return <Skeleton classNameNameName="banner-index skeleton" />;
   }
 
   return (

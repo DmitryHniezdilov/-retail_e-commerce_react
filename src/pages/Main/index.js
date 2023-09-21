@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetCatalogQuery, useGetMainQuery } from "../../api";
+import Skeleton from "react-loading-skeleton";
 import BannerMain from "../../elements/BannerMain";
 import SliderProducts from "../../elements/SliderProducts";
 import SliderProjects from "../../elements/SliderProjects";
@@ -82,6 +83,8 @@ const Main = () => {
     getLastCard.scrollIntoView({ behavior: "smooth" }); //scroll last element to top
   };
 
+  const isGlobalLoading = isLoadingMainQuery || isFetchingMainQuery || !data;
+
   useEffect(() => {
     innerWidth > DESKTOP_WIDTH_XL ? setIsDesktop(true) : setIsDesktop(false);
   }, [innerWidth]);
@@ -89,34 +92,49 @@ const Main = () => {
   return (
     <main>
       <BannerMain
-        isLoading={isLoadingMainQuery || isFetchingMainQuery}
+        isLoading={isGlobalLoading}
         title={bannerMainData?.title}
         description={bannerMainData?.description}
       />
       <section className="content-center center gap-xs">
-        <h2>Products</h2>
-        <p className="content-center__desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text.
-        </p>
-        <SliderProducts
-          isDesktop={isDesktop}
-          isLoading={isLoadingMainQuery || isFetchingMainQuery}
-        />
+        {isGlobalLoading ? (
+          <>
+            <Skeleton width={230} className="h2" />
+            <Skeleton height={60} className="content-center__desc" />
+          </>
+        ) : (
+          <>
+            <h2>Products</h2>
+            <p className="content-center__desc">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text.
+            </p>
+          </>
+        )}
+        <SliderProducts isDesktop={isDesktop} isLoading={isGlobalLoading} />
       </section>
       <BannerIndex
-        isLoading={isLoadingMainQuery || isFetchingMainQuery}
+        isLoading={isGlobalLoading}
         title={bannerIndexData?.title}
         description={bannerIndexData?.description}
         isPaperReverse={bannerIndexData?.isPaperReverse}
       />
       <section className="content-center center gap-lg">
-        <h2>Projects</h2>
-        <p className="content-center__desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text.
-        </p>
-        <SliderProjects />
+        {isGlobalLoading ? (
+          <>
+            <Skeleton width={230} className="h2" />
+            <Skeleton height={60} className="content-center__desc" />
+          </>
+        ) : (
+          <>
+            <h2>Projects</h2>
+            <p className="content-center__desc">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text.
+            </p>
+          </>
+        )}
+        <SliderProjects isLoading={isGlobalLoading} />
         <div className="content-center__btn-wrap">
           <Link to="/" className="btn btn--sm">
             View All
@@ -124,11 +142,20 @@ const Main = () => {
         </div>
       </section>
       <section className="content-center center gap-lg hide-to-md decor-bcg decor-bcg--content">
-        <h2>Tile catalog</h2>
-        <p className="content-center__desc">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text.
-        </p>
+        {isGlobalLoading ? (
+          <>
+            <Skeleton width={230} className="h2" />
+            <Skeleton height={60} className="content-center__desc" />
+          </>
+        ) : (
+          <>
+            <h2>Tile catalog</h2>
+            <p className="content-center__desc">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text.
+            </p>
+          </>
+        )}
         <CatalogGrid
           catalogList={catalogList}
           isLoad={isLoadGoods}
@@ -137,7 +164,7 @@ const Main = () => {
         />
       </section>
       <BannerIndex
-        isLoading={isLoadingMainQuery || isFetchingMainQuery}
+        isLoading={isGlobalLoading}
         title={bannerIndexReverseData?.title}
         description={bannerIndexReverseData?.description}
         isPaperReverse={bannerIndexReverseData?.isPaperReverse}
