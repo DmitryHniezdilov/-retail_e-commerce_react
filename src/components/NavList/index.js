@@ -48,6 +48,7 @@ const NavList = ({ navList, isDesktop, onClose }) => {
             .map((item, idx) => (
               <li className="nav-list__drop-item" key={`category-${idx}`}>
                 <Skeleton
+                  key={idx}
                   width={130}
                   height={18}
                   className="nav-list__drop-link skeleton"

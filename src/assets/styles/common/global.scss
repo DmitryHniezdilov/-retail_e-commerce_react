@@ -36,6 +36,7 @@ html {
   &::-webkit-scrollbar-thumb {
     background-color: $color-scrollbar;
     border-radius: 5px;
+    cursor: pointer;
   }
 }
 

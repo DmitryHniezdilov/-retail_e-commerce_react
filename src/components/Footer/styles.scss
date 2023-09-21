@@ -23,6 +23,7 @@
   &__logo {
     width: 122px;
     max-width: 122px;
+    transition: all 0.4s ease;
 
     &:hover,
     &:focus,
@@ -30,6 +31,7 @@
     &:active {
       color: $color-text-nav-hov;
       text-decoration: none;
+      transition: all 0.4s ease;
     }
   }
 
@@ -156,6 +158,7 @@
     &:active {
       color: $color-footer-links-hov;
       text-decoration: none;
+      transition: all 0.4s ease;
     }
   }
 
@@ -314,4 +317,5 @@
 .is-footer__nav-link-active {
   color: $color-footer-links-hov;
   text-decoration: none;
+  transition: all 0.4s ease;
 }

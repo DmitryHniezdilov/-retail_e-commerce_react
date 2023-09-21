@@ -1,0 +1,267 @@
+@import "../../assets/styles/utils/variables.scss";
+@import "../../assets/styles/mixins/media.scss";
+
+.product {
+  &__info-wrap {
+    display: flex;
+    flex-flow: column nowrap;
+
+    @include media-md {
+      flex-flow: row nowrap;
+    }
+  }
+
+  &__slider {
+    width: 100%;
+
+    @include media-md {
+      width: 50%;
+      padding-right: 20px;
+    }
+
+    @include media-xl {
+      width: 51%;
+      padding-right: 60px;
+    }
+  }
+
+  &__info {
+    padding-top: 20px;
+    width: 100%;
+    text-align: left;
+
+    @include media-md {
+      width: 50%;
+    }
+
+    @include media-xl {
+      width: 49%;
+    }
+  }
+
+  &__tabs {
+    @include media-lg {
+      margin-top: 50px !important;
+    }
+
+    @include media-xl {
+      margin-top: 75px !important;
+    }
+
+    @include media-content {
+      margin-top: 108px !important;
+    }
+  }
+
+  &__title {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    &::after {
+      content: none;
+    }
+
+    @include media-xl {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__price {
+    font-size: 20px;
+    font-family: $font-title;
+    line-height: 0.6;
+    margin-bottom: 17px;
+
+    @include media-xl {
+      font-size: 30px;
+      margin-bottom: 34px;
+    }
+  }
+
+  &__desk {
+    font-size: 20px;
+    line-height: 1.4;
+    color: $color-text-secondary;
+    margin-bottom: 22px;
+    text-align: justify;
+
+    @include media-xl {
+      margin-bottom: 67px;
+    }
+  }
+
+  &__purchase-specs-list {
+    list-style: none;
+  }
+
+  &__purchase-specs-item {
+    margin-bottom: 10px;
+    position: relative;
+    margin-left: 23px;
+    font-family: $font-title;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 8px;
+      height: 8px;
+      top: 8px;
+      left: -20px;
+      transform: translateX(-50%);
+      background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='4' fill='%23C4C4C4'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__purchase-info {
+    margin-bottom: 20px;
+    width: 100%;
+    display: inline-flex;
+    flex-flow: column wrap;
+
+    @include media-sm {
+      flex-flow: row nowrap;
+    }
+
+    @include media-md {
+      flex-flow: column wrap;
+    }
+
+    @include media-lg {
+      flex-flow: row nowrap;
+    }
+  }
+
+  &__purchase-add-wrap {
+    flex-grow: 1;
+    display: inherit;
+    font-size: 0;
+  }
+
+  &__purchase-add {
+    margin-right: 10px;
+    width: 175px !important;
+    font-weight: 400 !important;
+
+    @include media-xl {
+      height: 62px !important;
+      width: auto !important;
+      min-width: 220px;
+    }
+  }
+
+  &__purchase-like {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    vertical-align: middle;
+    border: 1px solid #000000;
+    background: transparent;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.react-loading-skeleton {
+      background-color: var(--base-color);
+      border: none;
+    }
+
+    @include media-xl {
+      height: 62px;
+      width: 62px;
+    }
+  }
+
+  &__purchase-counter-wrap {
+    margin-right: 0;
+    margin-bottom: 10px;
+    display: inline-flex;
+    position: relative;
+    font-size: 0;
+    width: fit-content;
+
+    @include media-sm {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+
+    @include media-md {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+
+    @include media-lg {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__purchase-counter {
+    width: 175px;
+    height: 45px;
+    font-size: 18px;
+    border: 1px solid #000000;
+    color: #000;
+    text-align: center;
+    border-radius: 0;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus-visible {
+      border-radius: 0;
+      outline: none;
+    }
+
+    &.react-loading-skeleton {
+      border: none;
+    }
+
+    @include media-xl {
+      width: 175px;
+      height: 62px;
+      font-size: 20px;
+    }
+  }
+
+  &__purchase-counter-inc,
+  &__purchase-counter-dec {
+    width: 68px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-weight: 200;
+    background: transparent;
+    border: none;
+    background-size: 28px 28px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+  }
+
+  &__purchase-counter-inc {
+    right: 0;
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools --%3E%3Csvg width='800px' height='800px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='24' height='24' fill='white'/%3E%3Cpath d='M12 6V18' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M6 12H18' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  &__purchase-counter-dec {
+    left: 0;
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools --%3E%3Csvg width='800px' height='800px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='24' height='24' fill='white'/%3E%3Cpath d='M6 12H18' stroke='%23000000' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+}

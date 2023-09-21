@@ -38,10 +38,12 @@
       &:active {
         color: $color-text-nav-hov;
         text-decoration: none;
+        transition: all 0.4s ease;
       }
 
       &.is-header-nav-active {
         color: $color-text-nav-hov;
+        transition: all 0.4s ease;
       }
 
       &.skeleton {

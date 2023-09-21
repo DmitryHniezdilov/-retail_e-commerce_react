@@ -1,0 +1,74 @@
+@import "../../assets/styles/mixins/media";
+
+.tabs {
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+  }
+
+  &__item {
+    margin: 0;
+    padding: 0 12px;
+    font-family: $font-title;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $color-text-tabs;
+    transition: all 0.4s ease;
+    cursor: pointer;
+
+    &.is-selected {
+      color: $color-text-tabs-hov;
+      transition: all 0.4s ease;
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:active {
+      color: $color-text-tabs-hov;
+      transition: all 0.4s ease;
+    }
+
+    &.skeleton {
+      margin: 0 12px;
+    }
+
+    @include media-xl {
+      font-size: 20px;
+    }
+  }
+
+  &__content {
+    font-family: $font-title;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+
+    @include media-xl {
+      font-size: 20px;
+    }
+  }
+
+  &__tabpanel {
+    margin-top: 20px;
+    text-align: justify;
+
+    @include media-sm {
+      margin-top: 25px;
+    }
+
+    @include media-lg {
+      margin-top: 30px;
+    }
+
+    @include media-xl {
+      margin-top: 37px;
+    }
+  }
+}
