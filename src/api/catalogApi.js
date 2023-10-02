@@ -8,7 +8,7 @@ export const catalogApi = createApi({
     prepareHeaders: (headers) => {
       headers.set("Authorization", "bearer " + process.env.REACT_APP_API_TOKEN);
       return headers;
-    },
+    }, // Authorization don't work with random
   }),
   tagTypes: ["Catalog"],
   endpoints: (builder) => ({

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useGetCatalogQuery, useGetMainQuery } from "../../api";
@@ -20,7 +20,6 @@ const Main = () => {
     innerWidth > DESKTOP_WIDTH_XL ? true : false
   );
 
-  // const searchValue = useSelector((state) => state.search);
   const [rangeValue, setRangeValue] = useState(INITIAL_RANGE_VALUE);
   const [paginationStep, setPaginationStep] = useState(
     window.innerWidth > DESKTOP_WIDTH_LG ? 8 : 6
@@ -31,6 +30,7 @@ const Main = () => {
     {
       paginationLimit: paginationLimit,
       between: rangeValue,
+      random: true,
     },
     {
       selectFromResult: ({ data, isLoading, isFetching, isError }) => ({
@@ -42,6 +42,19 @@ const Main = () => {
       }),
     }
   );
+
+  const isCatalogListLoading = isLoading || isFetching || !catalogList;
+
+  const isLoadGoods = pagination?.total >= paginationLimit + paginationStep;
+  const addGoods = () => {
+    const getLastCard = document.querySelector("#js-card-scroll:last-child");
+
+    isLoadGoods
+      ? setPaginationLimit(paginationLimit + paginationStep)
+      : setPaginationLimit(pagination.total);
+
+    getLastCard.scrollIntoView({ behavior: "smooth" }); //scroll last element to top
+  };
 
   const {
     data,
@@ -72,18 +85,7 @@ const Main = () => {
     }
   );
 
-  const isLoadGoods = pagination?.total >= paginationLimit + paginationStep;
-  const addGoods = () => {
-    const getLastCard = document.querySelector("#js-card-scroll:last-child");
-
-    isLoadGoods
-      ? setPaginationLimit(paginationLimit + paginationStep)
-      : setPaginationLimit(pagination.total);
-
-    getLastCard.scrollIntoView({ behavior: "smooth" }); //scroll last element to top
-  };
-
-  const isGlobalLoading = isLoadingMainQuery || isFetchingMainQuery || !data;
+  const isBannerLoading = isLoadingMainQuery || isFetchingMainQuery || !data;
 
   useEffect(() => {
     innerWidth > DESKTOP_WIDTH_XL ? setIsDesktop(true) : setIsDesktop(false);
@@ -92,12 +94,12 @@ const Main = () => {
   return (
     <main>
       <BannerMain
-        isLoading={isGlobalLoading}
+        isLoading={isBannerLoading}
         title={bannerMainData?.title}
         description={bannerMainData?.description}
       />
       <section className="content-center center gap-xs">
-        {isGlobalLoading ? (
+        {isBannerLoading ? (
           <>
             <Skeleton width={230} className="h2" />
             <Skeleton height={60} className="content-center__desc" />
@@ -111,16 +113,16 @@ const Main = () => {
             </p>
           </>
         )}
-        <SliderProducts isDesktop={isDesktop} isLoading={isGlobalLoading} />
+        <SliderProducts isDesktop={isDesktop} isLoading={isBannerLoading} />
       </section>
       <BannerIndex
-        isLoading={isGlobalLoading}
+        isLoading={isBannerLoading}
         title={bannerIndexData?.title}
         description={bannerIndexData?.description}
         isPaperReverse={bannerIndexData?.isPaperReverse}
       />
       <section className="content-center center gap-lg">
-        {isGlobalLoading ? (
+        {isBannerLoading ? (
           <>
             <Skeleton width={230} className="h2" />
             <Skeleton height={60} className="content-center__desc" />
@@ -134,7 +136,7 @@ const Main = () => {
             </p>
           </>
         )}
-        <SliderProjects isLoading={isGlobalLoading} />
+        <SliderProjects isLoading={isBannerLoading} />
         <div className="content-center__btn-wrap">
           <Link to="/" className="btn btn--sm">
             View All
@@ -142,7 +144,7 @@ const Main = () => {
         </div>
       </section>
       <section className="content-center center gap-lg hide-to-md decor-bcg decor-bcg--content">
-        {isGlobalLoading ? (
+        {isBannerLoading ? (
           <>
             <Skeleton width={230} className="h2" />
             <Skeleton height={60} className="content-center__desc" />
@@ -160,11 +162,11 @@ const Main = () => {
           catalogList={catalogList}
           isLoad={isLoadGoods}
           onLoad={addGoods}
-          isLoading={isLoading || isFetching}
+          isLoading={isCatalogListLoading}
         />
       </section>
       <BannerIndex
-        isLoading={isGlobalLoading}
+        isLoading={isBannerLoading}
         title={bannerIndexReverseData?.title}
         description={bannerIndexReverseData?.description}
         isPaperReverse={bannerIndexReverseData?.isPaperReverse}

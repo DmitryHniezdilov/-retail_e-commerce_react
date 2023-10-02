@@ -29,7 +29,7 @@ const NavList = ({ navList, isDesktop, onClose }) => {
               navList.map(({ id, attributes }) => (
                 <li className="nav-list__drop-item" key={`category-${id}`}>
                   <NavLink
-                    to={`/${attributes.slug}`}
+                    to={`/categories/${attributes.slug}`}
                     className={({ isActive }) =>
                       isActive
                         ? "nav-list__drop-link is-header-nav-active"

@@ -3,6 +3,12 @@
 .catalog-grid {
   margin-top: 28px;
 
+  &--bnr {
+    .catalog-grid__list {
+      margin-bottom: 0;
+    }
+  }
+
   &__list {
     margin: -15px;
     display: flex;
@@ -18,7 +24,21 @@
     }
   }
 
+  @include media-md {
+    &--bnr {
+      .card:last-child {
+        display: none;
+      }
+    }
+  }
+
   @include media-lg {
+    &--bnr {
+      .card:last-child {
+        display: block;
+      }
+    }
+
     &__btn-wrap {
       &--top-enlg {
         margin-top: 80px;
@@ -28,6 +48,14 @@
 
   @include media-xl {
     margin-top: 40px;
+
+    &--bnr {
+      margin-top: -20px;
+
+      .catalog-grid__list {
+        margin-bottom: 0;
+      }
+    }
 
     &__btn-wrap {
       margin-top: 50px;

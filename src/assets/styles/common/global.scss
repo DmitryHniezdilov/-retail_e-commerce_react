@@ -179,11 +179,19 @@ img {
 }
 
 .gap-btm {
+  &-sm {
+    margin-bottom: 40px;
+  }
+
   &-lg {
     margin-bottom: 60px;
   }
 
   @include media-lg {
+    &-sm {
+      margin-bottom: 55px;
+    }
+
     &-md,
     &-md-from-lg {
       margin-bottom: 70px;
@@ -196,6 +204,10 @@ img {
   }
 
   @include media-xl {
+    &-sm {
+      margin-bottom: 90px;
+    }
+
     &-md,
     &-md-from-lg {
       margin-bottom: 100px;
@@ -479,6 +491,7 @@ img {
 }
 
 .is-modal {
+  width: 100%;
   position: fixed;
   overflow: hidden;
 }

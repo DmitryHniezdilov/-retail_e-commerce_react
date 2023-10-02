@@ -1,12 +1,15 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useGetCatalogItemQuery } from "../../api";
+import { useGetCatalogItemQuery, useGetCatalogRandomQuery } from "../../api";
 import Skeleton from "react-loading-skeleton";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import CatalogGrid from "../../components/CatalogGrid";
+import BannerPromo from "../../elements/BannerPromo";
 import SliderProductInfo from "../../elements/SliderProductInfo";
 import Tabs from "../../elements/Tabs";
 import SvgIcon from "../../elements/SvgIcon";
 import "./styles.scss";
+import { DESKTOP_WIDTH_LG } from "../../utils/constants";
 
 const Product = () => {
   const { id } = useParams();
@@ -34,7 +37,28 @@ const Product = () => {
       }
     );
 
-  console.log("product", product);
+  const { catalogList, pagination, isLoadingQuery, isFetchingQuery } =
+    useGetCatalogRandomQuery(
+      {
+        paginationLimit: 15,
+      },
+      {
+        selectFromResult: ({
+          data,
+          isLoading,
+          isFetching,
+          isError,
+          refetch,
+        }) => ({
+          catalogList: data?.catalogList,
+          pagination: data?.catalogMeta?.pagination,
+          isLoading: isLoading,
+          isFetching: isFetching,
+          isError: isError,
+          refetch: refetch,
+        }),
+      }
+    );
 
   const setCountInc = () => {
     setCount(count + 1);
@@ -44,29 +68,28 @@ const Product = () => {
     setCount(count <= 1 ? 1 : count - 1);
   };
 
+  const isProductLoading = isLoading || isFetching || !product;
+  const isBannerLoading = isLoadingQuery || isFetchingQuery || !catalogList;
+
+  const prepeareCatalogList = !isBannerLoading && catalogList.slice(0, 4);
+
   return (
     <>
-      {product || !isLoading ? (
+      {!isProductLoading ? (
         <Breadcrumbs title={product?.title || ""} />
       ) : (
         <Skeleton height={112} />
       )}
-      <section className="content-center center gap-xs gap-btm-md product">
+      <main className="content-center center gap-xs gap-btm-sm product">
         <div className="product__info-wrap">
           <div className="product__slider">
-            <SliderProductInfo isLoading={isLoading} />
+            <SliderProductInfo isLoading={isProductLoading} />
           </div>
-          {product || !isLoading ? (
+          {!isProductLoading ? (
             <div className="product__info">
-              <h2 className="product__title">Product name</h2>
-              <p className="product__price">199,50 SAR</p>
-              <p className="product__desk">
-                Product Short Description senectus et netus et malesuada fames
-                ac turpis egestas. Vesitbulum tortor quam, feugiat vitae,
-                ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-                quam egestas semper. Aenean ultricies mi vitae est. Mauris
-                placerat eleifend
-              </p>
+              <h2 className="product__title">{product?.title}</h2>
+              <p className="product__price">{product?.price}</p>
+              <p className="product__desk">{product?.description}</p>
               <div className="product__purchase-info">
                 <div className="product__purchase-counter-wrap">
                   <button
@@ -134,7 +157,20 @@ const Product = () => {
         <div className="product__tabs gap">
           <Tabs isLoading={isLoading} />
         </div>
-      </section>
+        <section className="content-center center gap-lg">
+          {isBannerLoading ? (
+            <Skeleton width={230} className="h3" />
+          ) : (
+            <h4>Related Products</h4>
+          )}
+          <CatalogGrid
+            catalogList={prepeareCatalogList}
+            isLoading={isBannerLoading}
+            isBanner={true}
+          />
+        </section>
+        <BannerPromo isLoading={isBannerLoading} />
+      </main>
     </>
   );
 };

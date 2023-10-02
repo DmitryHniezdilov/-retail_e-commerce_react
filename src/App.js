@@ -8,6 +8,7 @@ import PageLayout from "./components/PageLayout";
 import Main from "./pages/Main/";
 import NotFound from "./pages/NotFound";
 import Catalog from "./pages/Catalog";
+import Category from "./pages/Category";
 import Product from "./pages/Product";
 
 const router = createBrowserRouter(
@@ -29,7 +30,7 @@ const router = createBrowserRouter(
           path: "catalogs",
         }}
       />
-      <Route path="/:id?" element={<Catalog />} />
+      <Route path="/categories/:id?" element={<Category />} />
       <Route
         path="catalogs/:id?"
         element={<Product />}

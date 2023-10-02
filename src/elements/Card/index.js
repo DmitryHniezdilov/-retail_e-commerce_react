@@ -9,8 +9,6 @@ const Card = ({ product }) => {
   const IMG_PATH_END = img.data.attributes.url;
   const IMG_PATH = CURRENT_URL + IMG_PATH_END;
 
-  console.log("product.attributes", product);
-
   return (
     <div className="card" id="js-card-scroll">
       <Link to={`/catalogs/${product.id}`} className="card__link">

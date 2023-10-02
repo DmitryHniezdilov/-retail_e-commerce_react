@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useGetCatalogQuery } from "../../api";
 import CatalogSettings from "../../components/CatalogSettings";
@@ -8,13 +7,13 @@ import BannerSecondary from "../../elements/BannerSecondary";
 import BannerPromo from "../../elements/BannerPromo";
 import { INITIAL_RANGE_VALUE, DESKTOP_WIDTH_LG } from "../../utils/constants";
 
-const Catalog = () => {
+const Category = () => {
   const { id } = useParams();
-  const searchValue = useSelector((state) => state.search);
 
   const [paginationStep, setPaginationStep] = useState(
     window.innerWidth > DESKTOP_WIDTH_LG ? 8 : 6
   );
+
   const [rangeValue, setRangeValue] = useState(INITIAL_RANGE_VALUE);
   const [isShowPriceRange, setShowPriceRange] = useState(false);
   const [paginationLimit, setPaginationLimit] = useState(paginationStep);
@@ -26,7 +25,6 @@ const Catalog = () => {
       category: id,
       sort: selectedSort,
       between: rangeValue,
-      search: searchValue,
     },
     {
       selectFromResult: ({
@@ -46,7 +44,7 @@ const Catalog = () => {
     }
   );
 
-  const isCatalogListLoading = isLoading || isFetching || !catalogList;
+  const isCategoryLoading = isLoading || isFetching || !catalogList;
 
   const handleClosePriceRange = useCallback(
     (e) => {
@@ -85,7 +83,7 @@ const Catalog = () => {
 
   return (
     <main>
-      {!searchValue && <BannerSecondary isLoading={isCatalogListLoading} />}
+      <BannerSecondary isLoading={isCategoryLoading} />
       <section className="content-center center gap-sm gap-btm-md">
         <CatalogSettings
           pagination={pagination}
@@ -95,19 +93,18 @@ const Catalog = () => {
           onShowPriceRange={onShowPriceRange}
           setRangeValue={setRangeValue}
           rangeValue={rangeValue}
-          searchValue={searchValue}
           isLoad={isLoadGoods}
         />
         <CatalogGrid
           catalogList={catalogList}
           isLoad={isLoadGoods}
           onLoad={addGoods}
-          isLoading={isCatalogListLoading}
+          isLoading={isCategoryLoading}
         />
       </section>
-      <BannerPromo isLoading={isCatalogListLoading} />
+      <BannerPromo isLoading={isCategoryLoading} />
     </main>
   );
 };
 
-export default Catalog;
+export default Category;

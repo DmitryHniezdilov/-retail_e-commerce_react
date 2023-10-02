@@ -6,14 +6,17 @@ import { useGetCategoriesQuery } from "../../api";
 
 const PageLayout = () => {
   const { categoriesList, isLoading, isFetching, isError } =
-    useGetCategoriesQuery("*", {
-      selectFromResult: ({ data, isLoading, isFetching, isError }) => ({
-        categoriesList: data?.categoriesList,
-        isLoading: isLoading,
-        isFetching: isFetching,
-        isError: isError,
-      }),
-    });
+    useGetCategoriesQuery(
+      { populate: "*" },
+      {
+        selectFromResult: ({ data, isLoading, isFetching, isError }) => ({
+          categoriesList: data?.categoriesList,
+          isLoading: isLoading,
+          isFetching: isFetching,
+          isError: isError,
+        }),
+      }
+    );
 
   return (
     <div className="page">

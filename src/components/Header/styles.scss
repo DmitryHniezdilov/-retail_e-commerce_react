@@ -1,6 +1,8 @@
 @import "../../assets/styles/mixins/media";
 
 .header {
+  z-index: 2;
+
   &__inner {
     display: flex;
     flex-flow: row nowrap;

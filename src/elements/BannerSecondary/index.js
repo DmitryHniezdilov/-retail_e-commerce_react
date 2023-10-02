@@ -11,7 +11,8 @@ const BannerSecondary = ({ isLoading }) => {
 
   const categoriesList = useSelector(
     (state) =>
-      state?.categories?.queries['getCategories("*")']?.data?.categoriesList
+      state?.categories?.queries['getCategories({"populate":"*"})']?.data
+        ?.categoriesList
   );
 
   const getTitle = () => {

@@ -6,29 +6,7 @@ import "./styles.scss";
 import bcg from "./banner-promo-bcg.jpg";
 
 const BannerPromo = ({ isLoading }) => {
-  const { id: currentSlug } = useParams();
-  const [title, setTitle] = useState("Catalog");
-
-  const categoriesList = useSelector(
-    (state) =>
-      state?.categories?.queries['getCategories("*")']?.data?.categoriesList
-  );
-
-  const getTitle = () => {
-    if (!categoriesList) return;
-
-    const findTitle = categoriesList.find(
-      (item) => currentSlug === item.attributes.slug
-    )?.attributes?.Title;
-
-    return findTitle;
-  };
-
-  useEffect(() => {
-    currentSlug ? setTitle(getTitle()) : setTitle("Catalog");
-  }, [currentSlug, categoriesList]);
-
-  if (!categoriesList || isLoading) {
+  if (isLoading) {
     return <Skeleton className="banner-promo skeleton" />;
   }
 

@@ -70,7 +70,7 @@ const Footer = ({ categoriesList, isLoading }) => {
                             key={`category-ft-${id}`}
                           >
                             <NavLink
-                              to={`/${attributes.slug}`}
+                              to={`/categories/${attributes.slug}`}
                               className={({ isActive }) =>
                                 isActive
                                   ? "footer__nav-link is-footer__nav-link-active"

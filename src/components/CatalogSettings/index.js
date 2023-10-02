@@ -31,7 +31,6 @@ const CatalogSettings = ({
                 ? `${pagination?.start + 1} - ${pagination?.limit}  of`
                 : ""
             } ${pagination?.total} results`}
-            {/*  */}
           </span>
         ) : (
           <Skeleton width={180} height={28} />
